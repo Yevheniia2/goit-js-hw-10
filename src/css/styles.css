@@ -18,3 +18,35 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+
+ul {
+  list-style: none;
+}
+.item-list {
+  display: flex;
+}
+.item-list:not(:last-child) {
+  margin-bottom: 10px;
+}
+img {
+  display: block;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+p {
+  flex-grow: 1;
+  margin-left: 5px;
+  line-height: 24px;
+}
+.item {
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 800;
+}
+.text {
+  font-weight: bold;
+}
+.text > span {
+  font-weight: normal;
+}
