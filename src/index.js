@@ -9,22 +9,26 @@ const refs = {
     inputSearch: document.querySelector('[id="search-box"]'),
     countryList: document.querySelector('.country-list'),
     countryInfo: document.querySelector('.country-info'),
+    formSearch: document.querySelector('#form')
 };
 
 refs.inputSearch.addEventListener('input', debounce(onInputSearch, DEBOUNCE_DELAY));
 
 function onInputSearch(event) {
     const name = event.target.value.trim();
-    if (name === '') {
+    if (name == '') {
+        refs.countryInfo.innerHTML = '';
+        refs.countryList.innerHTML = '';
+        refs.formSearch.reset();
         return;
     }
     fetchCountries(name)
         .then(data => {
             const countriesQuantity = data.length;
             if (countriesQuantity > 10) {
-                Notify.info('Too many matches found. Please enter a more specific name.');
+                if (name != '') Notify.info('Too many matches found. Please enter a more specific name.');
             }
-            if (countriesQuantity > 2 && countriesQuantity < 10) {
+            if (countriesQuantity > 2 && countriesQuantity < 11) {
                 refs.countryInfo.innerHTML = '';
                 refs.countryList.innerHTML = createCountriesList(data);
             }
